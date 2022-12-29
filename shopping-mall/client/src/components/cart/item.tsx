@@ -6,7 +6,7 @@ import { UPDATE_CART, DELETE_CART } from "../../graphql/cart";
 import ItemData from "./itemData";
 
 const CartItem = (
-  { id, imageUrl, price, title, amount }: CartType,
+  { id, product: { imageUrl, price, title }, amount }: CartType,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const queryClient = getClient();

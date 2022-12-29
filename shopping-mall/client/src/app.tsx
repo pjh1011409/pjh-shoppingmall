@@ -4,6 +4,7 @@ import { getClient } from "./queryClient";
 import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import NavBar from "./components/common/navBar";
+import React from "react";
 
 const App = () => {
   const elem = useRoutes(routes);
