@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "react-query";
-import ProductList from "../../components/product/index";
+import ProductList from "../../components/product/list";
 import GET_PRODUCTS from "../../graphql/products";
 import { graphqlFetcher, QueryKeys } from "../../queryClient";
 import { Products } from "../../graphql/products";
@@ -12,7 +12,7 @@ const ProductListPage = () => {
 
   const { data, isSuccess, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useInfiniteQuery<Products>(
-      QueryKeys.PRODUCTS,
+      [QueryKeys.PRODUCTS, "products"],
       ({ pageParam = "" }) =>
         graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
       {
