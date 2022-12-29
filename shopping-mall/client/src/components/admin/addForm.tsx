@@ -1,12 +1,7 @@
 import React, { SyntheticEvent } from "react";
-import { QueryClient, useMutation } from "react-query";
+import { useMutation } from "react-query";
 import { getClient, graphqlFetcher, QueryKeys } from "../../queryClient";
-import {
-  ADD_PRODUCT,
-  MutableProduct,
-  Product,
-  Products,
-} from "../../graphql/products";
+import { ADD_PRODUCT, MutableProduct } from "../../graphql/products";
 import arrToObj from "../../util/arrToObj";
 
 const AddForm = () => {

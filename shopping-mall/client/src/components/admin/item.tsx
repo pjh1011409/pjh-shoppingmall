@@ -2,7 +2,6 @@ import React from "react";
 import { SyntheticEvent } from "react";
 import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
-import { ADD_CART } from "../../graphql/cart";
 import {
   DELETE_PRODUCT,
   MutableProduct,
