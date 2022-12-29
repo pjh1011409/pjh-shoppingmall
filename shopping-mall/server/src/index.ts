@@ -2,25 +2,33 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import schema from "./schema";
 import resolvers from "./resolvers";
+import { DBField, readDB } from "./dbController";
 
 (async () => {
+  const port = 8000;
+
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
+    context: {
+      db: {
+        products: readDB(DBField.PRODUCTS),
+        cart: readDB(DBField.CART),
+      },
+    },
   });
 
-  const port = 8000;
   const app = express();
   await server.start();
   server.applyMiddleware({
     app,
     path: "/graphql",
     cors: {
-      origin: ["http://localhosts:3000", "https://studio.apollographql.com"],
+      origin: ["http://localhost:5173", "https://studio.apollographql.com"],
       credentials: true,
     },
   });
-  await app.listen(port, async () => {
-    console.log(`server listening on ${port}`);
-  });
+  await app.listen({ port });
+
+  console.log(`server listening on ${port}...`);
 })();
