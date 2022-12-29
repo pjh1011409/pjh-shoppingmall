@@ -14,6 +14,9 @@ const NavBar = () => {
         <li>
           <Link to="/cart">장바구니</Link>
         </li>
+        <li>
+          <Link to="/admin">관리자페이지</Link>
+        </li>
       </ul>
     </nav>
   );
