@@ -10,8 +10,8 @@ const productSchema = gql`
     createdAt: Float
   }
 
-  type Query {
-    products: [Product!]
+  extend type Query {
+    products(cursor: ID): [Product!]
     product(id: ID!): Product!
   }
 `;
