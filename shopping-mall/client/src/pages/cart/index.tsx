@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { CartType, GET_CART } from "../../graphql/cart";
 import { graphqlFetcher, QueryKeys } from "../../queryClient";
-import CartList from "../../components/cart";
+import CartList from "../../components/cart/list";
 import React from "react";
 
 const Cart = () => {
