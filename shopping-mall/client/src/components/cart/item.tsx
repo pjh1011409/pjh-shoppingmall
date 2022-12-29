@@ -6,7 +6,7 @@ import { UPDATE_CART, DELETE_CART } from "../../graphql/cart";
 import ItemData from "./itemData";
 
 const CartItem = (
-  { id, product: { imageUrl, price, title }, amount }: CartType,
+  { id, product: { imageUrl, price, title, createdAt }, amount }: CartType,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const queryClient = getClient();
@@ -15,7 +15,10 @@ const CartItem = (
       graphqlFetcher(UPDATE_CART, { id, amount }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(QueryKeys.CART);
+        queryClient.invalidateQueries(QueryKeys.CART, {
+          exact: false,
+          refetchInactive: true,
+        });
       },
     }
   );
@@ -24,7 +27,10 @@ const CartItem = (
     ({ id }: { id: string }) => graphqlFetcher(DELETE_CART, { id }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(QueryKeys.CART);
+        queryClient.invalidateQueries(QueryKeys.CART, {
+          exact: false,
+          refetchInactive: true,
+        });
       },
     }
   );
@@ -46,15 +52,21 @@ const CartItem = (
         name="select-item"
         ref={ref}
         data-id={id}
+        disabled={!createdAt}
       />
       <ItemData imageUrl={imageUrl} price={price} title={title} />
-      <input
-        type="number"
-        className="cart-item__amount"
-        value={amount}
-        onChange={handlerUpdateAmount}
-        min={1}
-      />
+      {!createdAt ? (
+        <div>삭제된 상품입니다.</div>
+      ) : (
+        <input
+          type="number"
+          className="cart-item__amount"
+          value={amount}
+          onChange={handlerUpdateAmount}
+          min={1}
+        />
+      )}
+
       <button
         className="cart-item__button"
         type="button"
