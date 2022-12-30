@@ -12,16 +12,12 @@ ul {
 }
 
 #root {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  background-color: #0890ff;
 }
-.gnb {
-  ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-  }
+.navBar {
+  border-radius: 10px;
 }

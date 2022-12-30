@@ -1,9 +1,15 @@
-import React, { ForwardedRef, forwardRef, SyntheticEvent } from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import { useMutation } from "react-query";
 import { getClient, graphqlFetcher, QueryKeys } from "../../queryClient";
 import { CartType } from "../../graphql/cart";
 import { UPDATE_CART, DELETE_CART } from "../../graphql/cart";
 import ItemData from "./itemData";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { Badge, Button, Space } from "antd";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+const ButtonGroup = Button.Group;
 
 const CartItem = (
   { id, product: { imageUrl, price, title, createdAt }, amount }: CartType,
@@ -35,15 +41,21 @@ const CartItem = (
     }
   );
 
-  const handlerUpdateAmount = (e: SyntheticEvent) => {
-    const amount = Number((e.target as HTMLInputElement).value);
-    if (amount < 1) return;
-    updateCart({ id, amount });
-  };
-
   const handleDeleteItem = () => {
     deleteCart({ id });
   };
+
+  const increase = () => {
+    amount += 1;
+    updateCart({ id, amount });
+  };
+
+  const decline = () => {
+    if (amount === 1) return;
+    amount -= 1;
+    updateCart({ id, amount });
+  };
+
   return (
     <li className="cart-item">
       <input
@@ -58,22 +70,19 @@ const CartItem = (
       {!createdAt ? (
         <div>삭제된 상품입니다.</div>
       ) : (
-        <input
-          type="number"
-          className="cart-item__amount"
-          value={amount}
-          onChange={handlerUpdateAmount}
-          min={1}
-        />
+        <Space direction="vertical">
+          <Space size="large">
+            <Badge count={amount}></Badge>
+            <ButtonGroup>
+              <Button onClick={decline} icon={<MinusOutlined />} />
+              <Button onClick={increase} icon={<PlusOutlined />} />
+            </ButtonGroup>
+          </Space>
+        </Space>
       )}
-
-      <button
-        className="cart-item__button"
-        type="button"
-        onClick={handleDeleteItem}
-      >
-        삭제
-      </button>
+      <IconButton aria-label="delete" size="large" onClick={handleDeleteItem}>
+        <DeleteIcon />
+      </IconButton>
     </li>
   );
 };
