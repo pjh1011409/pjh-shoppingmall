@@ -2,7 +2,6 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import schema from "./schema";
 import resolvers from "./resolvers";
-import { DBField, readDB } from "./dbController";
 import env from "./envLoader";
 
 (async () => {
@@ -21,7 +20,8 @@ import env from "./envLoader";
     path: "/graphql",
     cors: {
       origin: [
-        "https://pjh-shoppingmall.vercel.app",
+        "http://localhost:5173",
+        "http://pjh-shoppingmall.vercel.app",
         "https://studio.apollographql.com",
       ],
       credentials: true,
