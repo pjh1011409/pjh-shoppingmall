@@ -20,6 +20,7 @@ import env from "./envLoader";
     path: "/graphql",
     cors: {
       origin: [
+        // "http://localhost:5173",
         "https://pjh-shoppingmall.vercel.app",
         "https://studio.apollographql.com",
       ],
