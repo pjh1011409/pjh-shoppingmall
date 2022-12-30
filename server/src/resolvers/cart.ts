@@ -11,7 +11,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { db } from "../../firbase";
+import { db } from "../firbase";
 import { Product, Resolver } from "./types";
 
 const cartResolver: Resolver = {
