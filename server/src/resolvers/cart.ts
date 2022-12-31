@@ -27,7 +27,6 @@ const cartResolver: Resolver = {
           ...d,
         });
       });
-      console.log(data);
       return data;
     },
   },
