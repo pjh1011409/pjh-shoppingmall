@@ -1,6 +1,31 @@
 @import "products";
 @import "cart";
 @import "payment";
+@import "navBar";
+
+:root {
+  --primary-color: black;
+  --background-color: white;
+}
+
+.ui-dark {
+  --primary-color: white;
+  --background-color: #3c6b39;
+
+  .navBar {
+    background-color: white;
+  }
+
+  .burgerLine1,
+  .burgerLine2,
+  .burgerLine3 {
+    background-color: #3c6b39;
+  }
+  .navTitle,
+  .menuItem {
+    color: #3c6b39;
+  }
+}
 
 body {
   margin: 0;
@@ -9,15 +34,4 @@ body {
 ul {
   list-style: none;
   padding: 0;
-}
-
-#root {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px 10px;
-  border-radius: 20px;
-  background-color: #0890ff;
-}
-.navBar {
-  border-radius: 10px;
 }
