@@ -1,0 +1,22 @@
+.bottomBar {
+  border-top: 1px solid #3c6b39;
+  height: 150px;
+  padding: 20px 10px;
+}
+
+.boxLayout {
+  display: flex;
+  justify-content: center;
+}
+
+.bottomBox {
+  border-radius: 20px;
+  border: 1px solid #3c6b39;
+  background-color: #f7f6f3;
+}
+
+.madeBy {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
