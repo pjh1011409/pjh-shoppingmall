@@ -1,0 +1,59 @@
+.homeMain {
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.mainLayout {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: auto;
+}
+
+.mainHeader {
+  margin: 20px 20px;
+  padding: 20px 0px;
+  min-width: 300px;
+}
+
+.header1 {
+  font-size: clamp(2.5em, 4.5vw, 3.5rem);
+  font-weight: 900;
+  margin: 25px 20px;
+  padding: 5px 10px;
+}
+
+.header2 {
+  font-weight: 900;
+  margin: 25px 20px;
+  padding: 5px 10px;
+}
+
+.gotoShopBtn {
+  margin: 0px 30px;
+  width: 110px;
+  padding: 8px 10px;
+  border-radius: 20px;
+  border: 1px solid black;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #3c6b39;
+  color: #f7f6f3;
+}
+
+.gotoShopBtn:hover {
+  background-color: #f7f6f3;
+  color: #3c6b39;
+}
+
+.mainImage {
+  border: 1px solid black;
+  width: 90%;
+  height: 300px;
+  margin: 40px 10px;
+  padding: 20px 10px;
+  min-width: 250px;
+}

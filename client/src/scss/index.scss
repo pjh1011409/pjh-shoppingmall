@@ -1,19 +1,22 @@
+@import "home";
 @import "products";
 @import "cart";
 @import "payment";
+@import "admin";
 @import "navBar";
+@import "bottomBar";
 
 :root {
-  --primary-color: black;
-  --background-color: white;
+  --primary-color: #3c6b39;
+  --background-color: #f7f6f3;
 }
 
 .ui-dark {
-  --primary-color: white;
+  --primary-color: #f7f6f3;
   --background-color: #3c6b39;
 
   .navBar {
-    background-color: white;
+    background-color: #f7f6f3;
   }
 
   .burgerLine1,
@@ -25,6 +28,19 @@
   .menuItem {
     color: #3c6b39;
   }
+
+  .gotoShopBtn {
+    background-color: #f7f6f3;
+    color: #3c6b39;
+  }
+
+  .gotoShopBtn:hover {
+    background-color: #3c6b39;
+    color: #f7f6f3;
+  }
+  .bottomBar {
+    border-top: 1px solid #f7f6f3;
+  }
 }
 
 body {
@@ -34,4 +50,8 @@ body {
 ul {
   list-style: none;
   padding: 0;
+}
+
+.mainContent {
+  margin-top: 100px;
 }
