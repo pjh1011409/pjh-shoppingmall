@@ -3,6 +3,8 @@ import { useMutation } from "react-query";
 import { getClient, graphqlFetcher, QueryKeys } from "../../queryClient";
 import { ADD_PRODUCT, MutableProduct } from "../../graphql/products";
 import arrToObj from "../../util/arrToObj";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const AddForm = () => {
   const queryClient = getClient();
@@ -28,19 +30,31 @@ const AddForm = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        상품명: <input name="title" type="text" required />
-      </label>
-      <label>
-        이미지URL: <input name="imageUrl" type="text" required />
-      </label>
-      <label>
-        상품가격: <input name="price" type="number" required min="1000" />
-      </label>
-      <label>
-        상세: <textarea name="description" />
-      </label>
-      <button type="submit">등록</button>
+      <Row className="addForm">
+        <Col sm className="leftLayout">
+          <div className="leftInput">
+            Name : <input name="title" type="text" required />
+          </div>
+          <div className="leftInput">
+            Image : <input name="imageUrl" type="text" required />
+          </div>
+          <div className="leftInput">
+            Price : &nbsp;
+            <input name="price" type="number" required min="1000" />
+          </div>
+        </Col>
+        <Col sm>
+          <div className="rightInput">Description</div>
+          <div className="rightInput">
+            <textarea name="description" />
+          </div>
+        </Col>
+        <div className="btnLayout">
+          <button type="submit" className="addBtn">
+            CREATE
+          </button>
+        </div>
+      </Row>
     </form>
   );
 };
