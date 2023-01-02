@@ -12,5 +12,8 @@
     "client": "yarn workspace client run dev",
     "server": "yarn workspace server run dev",
     "start": "cd server && npm run serve"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^3.10.0"
   }
 }
