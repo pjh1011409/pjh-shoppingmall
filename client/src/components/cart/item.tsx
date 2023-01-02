@@ -58,6 +58,7 @@ const CartItem = (
 
   return (
     <li className="cart-item">
+      <ItemData imageUrl={imageUrl} price={price} title={title} />
       <input
         className="cart-item__checkbox"
         type="checkbox"
@@ -66,7 +67,6 @@ const CartItem = (
         data-id={id}
         disabled={!createdAt}
       />
-      <ItemData imageUrl={imageUrl} price={price} title={title} />
       {!createdAt ? (
         <div>삭제된 상품입니다.</div>
       ) : (

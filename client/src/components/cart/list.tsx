@@ -77,11 +77,12 @@ const CartList = ({ items }: { items: CartType[] }) => {
   }, [items, formData]);
 
   return (
-    <div>
+    <div className="cartLayout">
+      <div className="cartTitle">장바구니</div>
       <form ref={formRef} onChange={handleCheckboxChanged}>
         <label>
           <input className="select-all" name="select-all" type="checkbox" />
-          전체선택
+          &nbsp; 전체선택
         </label>
         <ul className="cart">
           {items.map((item, i) => (
