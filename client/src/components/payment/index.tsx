@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import WillPay from "../willPay";
-import PaymentModal from "./modal";
+import PaymentModal from "./paymentModal";
 import { graphqlFetcher } from "../../queryClient";
 import { EXECUTE_PAY } from "../../graphql/payment";
 import React from "react";
