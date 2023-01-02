@@ -8,7 +8,7 @@
   top: 0;
   z-index: 9999;
   background-color: #3c6b39;
-  color: #f7f6f3;
+  color: white;
 }
 
 .navTitle {
@@ -16,7 +16,7 @@
   display: inline-block;
   margin-right: 20px;
   font-size: 25px;
-  color: #f7f6f3;
+  color: white;
   font-weight: 900;
   margin: 0px 20px;
 }
@@ -35,7 +35,7 @@
   font-size: 20px;
   cursor: pointer;
   text-decoration: none;
-  color: #f7f6f3;
+  color: white;
   text-align: center;
 }
 
@@ -56,7 +56,7 @@
   .xMenu > div {
     width: 25px;
     height: 3px;
-    background-color: #f7f6f3;
+    background-color: white;
     margin: 5px;
     transition: all 0.3s ease;
   }
@@ -64,7 +64,7 @@
   /* -------------------- burger모양 변환----------------- */
   .xMenu > .burgerLine1 {
     transform: rotate(-45deg) translate(-5px, 6px);
-    background-color: #f7f6f3;
+    background-color: white;
   }
 
   .xMenu > .burgerLine2 {
@@ -73,7 +73,7 @@
 
   .xMenu > .burgerLine3 {
     transform: rotate(45deg) translate(-5px, -6px);
-    background-color: #f7f6f3;
+    background-color: white;
   }
   /* -------------------- burger 클릭시 나타나는 메뉴바 위치------------------ */
   .menuBoxVisible {

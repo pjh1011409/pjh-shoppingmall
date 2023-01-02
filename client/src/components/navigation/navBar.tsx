@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { TbBottle } from "react-icons/tb";
 import CartIcon from "./cartIcon";
 
-const page = ["HOME", "SHOP", "ABOUT US", "ADMIN"];
-const url = ["/", "/products", "", "admin"];
+const page = ["HOME", "ABOUT US", "SHOP", "ADMIN"];
+const url = ["/", "", "/products", "admin"];
 
 const NavBar = () => {
   const [menuToggle, setMenuToggle] = useState(false);
@@ -25,14 +25,11 @@ const NavBar = () => {
         <div className="navTitle">
           <TbBottle /> Fresh Life
         </div>
-        <div className="darkToggle">
-          <DarkOnOff />
-        </div>
+        <DarkOnOff />
         <Link to="/cart" key={`Page ${url}`}>
-          <div className="menuItem" onClick={onClickNav}>
-            <CartIcon />
-          </div>
+          <CartIcon />
         </Link>
+
         {/* 토글을 클릭하게되면 x가 뜨게되고, 그렇지 않으면 버거모양유지 */}
         <div
           className={!menuToggle ? "burgerMenu" : "xMenu"}
