@@ -2,7 +2,7 @@
   width: 100%;
   margin: 0 auto;
   height: auto;
-  padding-top: 80px;
+  padding-top: 30px;
   padding-bottom: 80px;
 }
 
@@ -11,11 +11,12 @@
   justify-content: center;
   align-content: center;
   height: auto;
+  margin-bottom: 60px;
 }
 
 .mainHeader {
-  margin: 20px 20px;
-  padding: 20px 0px;
+  margin: 20px 0px;
+  padding: 10px 20px;
   min-width: 300px;
 }
 
@@ -50,10 +51,46 @@
 }
 
 .mainImage {
-  border: 1px solid black;
-  width: 90%;
+  width: 80%;
   height: 300px;
-  margin: 40px 10px;
-  padding: 20px 10px;
+  margin: 40px 0px;
   min-width: 250px;
+  background-color: #3c6b39;
+  border-radius: 5px;
+}
+
+.aboutLayout {
+  margin-top: 20px;
+}
+
+.aboutImage {
+  width: 80%;
+  height: 300px;
+  margin: 0px 30px;
+  min-width: 250px;
+  background-color: #3c6b39;
+  border-radius: 5px;
+}
+
+.header3 {
+  font-size: clamp(1.5em, 4.5vw, 1rem);
+  font-weight: 900;
+  margin-bottom: 10px;
+  padding: 5px 20px;
+  text-align: center;
+}
+
+.header4 {
+  font-size: clamp(2em, 4.5vw, 2.5rem);
+  font-weight: 900;
+  margin: 25px 20px;
+  padding: 5px 0px;
+  text-align: center;
+}
+
+.header5 {
+  font-weight: 900;
+  margin: 25px 20px;
+  padding: 5px 0px;
+  text-align: center;
 }

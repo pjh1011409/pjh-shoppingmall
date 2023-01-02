@@ -6,6 +6,7 @@ import { Products } from "../../graphql/products";
 import React, { useEffect, useRef, useState } from "react";
 import useIntersection from "../../hooks/useIntersection";
 import AddForm from "../../components/admin/addForm";
+import Container from "@mui/material/Container";
 
 const AdminPage = () => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
@@ -34,17 +35,19 @@ const AdminPage = () => {
   const doneEdit = () => setEditingIndex(null);
 
   return (
-    <div>
-      <h2>관리자</h2>
-      <AddForm />
-      <AdminList
-        list={data?.pages || []}
-        editingIndex={editingIndex}
-        startEdit={startEdit}
-        doneEdit={doneEdit}
-      />
-      <div ref={fetchMoreRef} />
-    </div>
+    <Container maxWidth="md">
+      <div className="adminLayout">
+        <div className="adminTitle">Admin</div>
+        <AddForm />
+        <AdminList
+          list={data?.pages || []}
+          editingIndex={editingIndex}
+          startEdit={startEdit}
+          doneEdit={doneEdit}
+        />
+        <div ref={fetchMoreRef} />
+      </div>
+    </Container>
   );
 };
 

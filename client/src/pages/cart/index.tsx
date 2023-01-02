@@ -3,6 +3,7 @@ import { CartType, GET_CART } from "../../graphql/cart";
 import { getClient, graphqlFetcher, QueryKeys } from "../../queryClient";
 import CartList from "../../components/cart/list";
 import React from "react";
+import Container from "@mui/material/Container";
 
 const Cart = () => {
   const queryClient = getClient();
@@ -22,7 +23,11 @@ const Cart = () => {
 
   if (!cartItems.length) return <div>장바구니가 비었어요</div>;
 
-  return <CartList items={cartItems} />;
+  return (
+    <Container maxWidth="md">
+      <CartList items={cartItems} />
+    </Container>
+  );
 };
 
 export default Cart;

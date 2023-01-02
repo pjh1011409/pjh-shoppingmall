@@ -1,5 +1,6 @@
 @import "home";
 @import "products";
+@import "detail";
 @import "cart";
 @import "payment";
 @import "admin";
@@ -8,15 +9,15 @@
 
 :root {
   --primary-color: #3c6b39;
-  --background-color: #f7f6f3;
+  --background-color: white;
 }
 
 .ui-dark {
-  --primary-color: #f7f6f3;
+  --primary-color: white;
   --background-color: #3c6b39;
 
   .navBar {
-    background-color: #f7f6f3;
+    background-color: white;
   }
 
   .burgerLine1,
@@ -29,17 +30,26 @@
     color: #3c6b39;
   }
 
-  .gotoShopBtn {
-    background-color: #f7f6f3;
+  .gotoShopBtn,
+  .addBtn,
+  .detailCart {
+    background-color: white;
     color: #3c6b39;
   }
 
-  .gotoShopBtn:hover {
+  .gotoShopBtn:hover,
+  .addBtn:hover,
+  .detailCart:hover {
     background-color: #3c6b39;
-    color: #f7f6f3;
+    color: white;
   }
   .bottomBar {
-    border-top: 1px solid #f7f6f3;
+    border-top: 1px solid white;
+  }
+
+  .product-item,
+  .cart-item {
+    border: 1px solid white;
   }
 }
 
