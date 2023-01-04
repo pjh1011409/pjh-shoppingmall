@@ -3,13 +3,23 @@ import { Link } from "react-router-dom";
 import { useMutation } from "react-query";
 import { graphqlFetcher } from "../../queryClient";
 import { ADD_CART } from "../../graphql/cart";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
+import AlertModal from "./alertModal";
 
 const ProductItem = ({ id, imageUrl, price, title }: Product) => {
+  const [modalShow, setModalShow] = useState(false);
+
   const { mutate: addCart } = useMutation((id: string) =>
     graphqlFetcher(ADD_CART, { id })
   );
+
+  const clickCart = () => {
+    addCart(id);
+    setModalShow(true);
+
+    setTimeout(() => setModalShow(false), 9000);
+  };
 
   return (
     <>
@@ -22,7 +32,7 @@ const ProductItem = ({ id, imageUrl, price, title }: Product) => {
 
         <Button
           animated="vertical"
-          onClick={() => addCart(id)}
+          onClick={clickCart}
           className="product-item__cart"
         >
           <Button.Content hidden>Cart</Button.Content>
@@ -30,6 +40,7 @@ const ProductItem = ({ id, imageUrl, price, title }: Product) => {
             <Icon name="shop" />
           </Button.Content>
         </Button>
+        <AlertModal show={modalShow} />
       </li>
     </>
   );
