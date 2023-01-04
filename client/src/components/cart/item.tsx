@@ -8,6 +8,7 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Badge, Button, Space } from "antd";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Button as DeleteButton, Icon } from "semantic-ui-react";
 
 const ButtonGroup = Button.Group;
 
@@ -59,18 +60,11 @@ const CartItem = (
   return (
     <li className="cart-item">
       <ItemData imageUrl={imageUrl} price={price} title={title} />
-      <input
-        className="cart-item__checkbox"
-        type="checkbox"
-        name="select-item"
-        ref={ref}
-        data-id={id}
-        disabled={!createdAt}
-      />
+
       {!createdAt ? (
         <div>삭제된 상품입니다.</div>
       ) : (
-        <Space direction="vertical">
+        <Space direction="vertical" className="productAmount">
           <Space size="large">
             <Badge count={amount}></Badge>
             <ButtonGroup>
@@ -80,9 +74,37 @@ const CartItem = (
           </Space>
         </Space>
       )}
-      <IconButton aria-label="delete" size="large" onClick={handleDeleteItem}>
-        <DeleteIcon />
-      </IconButton>
+      <div className="checkDelete">
+        <input
+          className="itemCheckbox"
+          type="checkbox"
+          name="select-item"
+          ref={ref}
+          data-id={id}
+          disabled={!createdAt}
+        />
+
+        <DeleteButton
+          animated="vertical"
+          onClick={handleDeleteItem}
+          className="product-item__cart"
+          style={{ float: "right" }}
+        >
+          <DeleteButton.Content hidden>Cart</DeleteButton.Content>
+          <DeleteButton.Content visible>
+            <DeleteIcon />
+          </DeleteButton.Content>
+        </DeleteButton>
+
+        <IconButton
+          aria-label="delete"
+          size="large"
+          onClick={handleDeleteItem}
+          style={{ float: "right" }}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </div>
     </li>
   );
 };

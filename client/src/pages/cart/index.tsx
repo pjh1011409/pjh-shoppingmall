@@ -4,6 +4,7 @@ import { getClient, graphqlFetcher, QueryKeys } from "../../queryClient";
 import CartList from "../../components/cart/list";
 import React from "react";
 import Container from "@mui/material/Container";
+import { CartResult } from "../../components/errorResult/errorResult";
 
 const Cart = () => {
   const queryClient = getClient();
@@ -21,7 +22,7 @@ const Cart = () => {
   });
   const cartItems = (data?.cart || []) as CartType[];
 
-  if (!cartItems.length) return <div>장바구니가 비었어요</div>;
+  if (!cartItems.length) return <CartResult />;
 
   return (
     <Container maxWidth="md">
