@@ -6,6 +6,7 @@ import { Products } from "../../graphql/products";
 import React, { useEffect, useRef } from "react";
 import useIntersection from "../../hooks/useIntersection";
 import Container from "@mui/material/Container";
+import { ProductResult } from "../../components/errorResult/errorResult";
 
 const ProductListPage = () => {
   const fetchMoreRef = useRef<HTMLDivElement>(null);
@@ -37,7 +38,7 @@ const ProductListPage = () => {
           How about a cool and refreshing organic drink with a soft and relaxing
           scent?
         </p>
-        <ProductList list={data?.pages || []} />
+        {data ? <ProductList list={data?.pages || []} /> : <ProductResult />}
         <div ref={fetchMoreRef} />
       </div>
     </Container>

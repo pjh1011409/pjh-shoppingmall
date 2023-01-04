@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 import useIntersection from "../../hooks/useIntersection";
 import AddForm from "../../components/admin/addForm";
 import Container from "@mui/material/Container";
+import { ProductResult } from "../../components/errorResult/errorResult";
 
 const AdminPage = () => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
@@ -39,12 +40,17 @@ const AdminPage = () => {
       <div className="adminLayout">
         <div className="adminTitle">Admin</div>
         <AddForm />
-        <AdminList
-          list={data?.pages || []}
-          editingIndex={editingIndex}
-          startEdit={startEdit}
-          doneEdit={doneEdit}
-        />
+        {data ? (
+          <AdminList
+            list={data?.pages || []}
+            editingIndex={editingIndex}
+            startEdit={startEdit}
+            doneEdit={doneEdit}
+          />
+        ) : (
+          <ProductResult />
+        )}
+
         <div ref={fetchMoreRef} />
       </div>
     </Container>
