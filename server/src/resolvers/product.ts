@@ -31,14 +31,12 @@ const productResolver: Resolver = {
       const q = query(products, ...queryOptions, limit(PAGE_SIZE));
       const snapshot = await getDocs(q);
       const data: DocumentData[] = [];
-      console.log(snapshot);
       snapshot.forEach((doc) =>
         data.push({
           id: doc.id,
           ...doc.data(),
         })
       );
-      console.log(data);
       return data;
     },
     product: async (parent, { id }) => {
