@@ -43,23 +43,69 @@
   }
 }
 
+.toggleBtn1,
+.toggleBtn2 {
+  padding-bottom: 10;
+
+  input[type="checkbox"] {
+    margin: 10px 5px;
+    margin-bottom: -4px;
+    appearance: none;
+    position: relative;
+    border: max(2px, 0.1em) solid gray;
+    background-color: white;
+    border-radius: 1.25em;
+    width: 2.25em;
+    height: 1.25em;
+  }
+  input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    transform: scale(0.8);
+    background-color: gray;
+    transition: left 100ms linear;
+  }
+
+  [type="checkbox"]:checked {
+    background-color: tomato;
+    border-color: tomato;
+  }
+
+  [type="checkbox"]:checked::before {
+    background-color: white;
+    left: 1em;
+  }
+
+  ​ input[type="checkbox"]:disabled:before {
+    background-color: lightgray;
+  }
+  ​ input[type="checkbox"]:disabled + span {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  ​ input[type="checkbox"]:focus-visible {
+    outline-offset: max(2px, 0.1em);
+    outline: max(2px, 0.1em) solid tomato;
+  }
+  ​ input[type="checkbox"]:enabled:hover {
+    box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  }
+}
+
+.toggleBtn2 {
+  margin: 10px 0px -35px 10px;
+}
+
 .productAmount {
   padding: 5px 30px;
 }
 
 .checkDelete {
   padding: 5px 0px;
-}
-
-.itemCheckbox {
-  input[type="checkbox"] {
-    display: inline-block;
-    margin: 20px;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #707070;
-    position: relative;
-  }
 }
 
 .cart-willpay {

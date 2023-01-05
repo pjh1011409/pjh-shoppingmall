@@ -81,8 +81,17 @@ const CartList = ({ items }: { items: CartType[] }) => {
       <div className="cartTitle">장바구니</div>
       <form ref={formRef} onChange={handleCheckboxChanged}>
         <label>
-          <input className="select-all" name="select-all" type="checkbox" />
-          &nbsp; 전체선택
+          <div className="toggleBtn1">
+            <span style={{ fontWeight: "bold", paddingBottom: "30px" }}>
+              ALL
+            </span>
+            <input
+              className="select-all"
+              name="select-all"
+              type="checkbox"
+              role="switch"
+            />
+          </div>
         </label>
         <ul className="cart">
           {items.map((item, i) => (
@@ -90,7 +99,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
           ))}
         </ul>
       </form>
-      <WillPay submitTitle="결제창으로" handleSubmit={handleSubmit} />
+      <WillPay submitTitle="Payment" handleSubmit={handleSubmit} />
     </div>
   );
 };
