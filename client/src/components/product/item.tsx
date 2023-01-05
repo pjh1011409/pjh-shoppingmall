@@ -18,7 +18,7 @@ const ProductItem = ({ id, imageUrl, price, title }: Product) => {
     addCart(id);
     setModalShow(true);
 
-    setTimeout(() => setModalShow(false), 9000);
+    setTimeout(() => setModalShow(false), 1500);
   };
 
   return (
