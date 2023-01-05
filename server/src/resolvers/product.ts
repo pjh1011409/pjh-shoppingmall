@@ -28,7 +28,12 @@ const productResolver: Resolver = {
         queryOptions.push(startAfter(snapshot));
       }
       if (!showDeleted) queryOptions.unshift(where("createdAt", "!=", null));
-      const q = query(products, ...queryOptions, limit(PAGE_SIZE));
+      const q = query(
+        products,
+        ...queryOptions,
+        orderBy("createdAt", "desc"),
+        limit(PAGE_SIZE)
+      );
       const snapshot = await getDocs(q);
       const data: DocumentData[] = [];
       snapshot.forEach((doc) =>
