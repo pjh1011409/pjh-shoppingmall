@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { TbBottle } from "react-icons/tb";
 import CartIcon from "./cartIcon";
 
-const page = ["HOME", "ABOUT US", "SHOP", "ADMIN"];
-const url = ["/", "", "/products", "admin"];
+const page = ["HOME", "SHOP", "ADMIN"];
+const url = ["/", "/products", "admin"];
 
 const NavBar = () => {
   const [menuToggle, setMenuToggle] = useState(false);

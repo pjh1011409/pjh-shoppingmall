@@ -29,7 +29,12 @@ const BottomBar = () => {
               >
                 <Button.Content
                   hidden
-                  style={{ fontSize: "15px", padding: "0px 5px" }}
+                  style={{
+                    fontSize: "15px",
+                    padding: "0px 5px",
+                    textDecoration: "underline",
+                    color: "#124070",
+                  }}
                 >
                   pjh31208@naver.com
                 </Button.Content>
