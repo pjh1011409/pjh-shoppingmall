@@ -22,6 +22,7 @@ const ProductDetail = ({
         </Col>
         <Col sm className="detailRightLayout">
           <div className="productTitle">{title}</div>
+          <div>{description}</div>
           <div className="productPrice">₩ {price}</div>
           <button className="detailCart">Add to Cart</button>
           <Description />

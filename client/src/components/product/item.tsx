@@ -33,11 +33,12 @@ const ProductItem = ({ id, imageUrl, price, title }: Product) => {
         <Button
           animated="vertical"
           onClick={clickCart}
+          style={{ backgroundColor: "white", marginBottom: "5px" }}
           className="product-item__cart"
         >
           <Button.Content hidden>Cart</Button.Content>
           <Button.Content visible>
-            <Icon name="shop" />
+            <Icon name="shop" style={{ fontSize: "17px" }} />
           </Button.Content>
         </Button>
         <AlertModal show={modalShow} />
