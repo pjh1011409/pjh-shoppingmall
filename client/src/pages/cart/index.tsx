@@ -5,6 +5,7 @@ import CartList from "../../components/cart/list";
 import React from "react";
 import Container from "@mui/material/Container";
 import { CartResult } from "../../components/errorResult/errorResult";
+import PayList from "../../components/willPay/payList";
 
 const Cart = () => {
   const queryClient = getClient();

@@ -2,7 +2,6 @@ import React from "react";
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
@@ -12,8 +11,9 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: "#f1e8d9",
+  borderRadius: "10px",
+  color: "#3c6b39",
   boxShadow: 24,
   p: 4,
 };
@@ -41,13 +41,23 @@ const PaymentModal = ({
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            <div style={{ textAlign: "center" }}>결제하시겠습니까?</div>
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-          <button onClick={proceed}>예</button>
-          <button onClick={cancel}>아니오</button>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "15px",
+            }}
+          >
+            <button onClick={proceed} className="payCheckBtn">
+              Yes
+            </button>
+            <button onClick={cancel} className="payCheckBtn">
+              No
+            </button>
+          </div>
         </Box>
       </Modal>
     </ModalPortal>

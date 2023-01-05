@@ -6,7 +6,6 @@ import { UPDATE_CART, DELETE_CART } from "../../graphql/cart";
 import ItemData from "./itemData";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Badge, Button, Space } from "antd";
-import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button as DeleteButton, Icon } from "semantic-ui-react";
 
@@ -66,7 +65,7 @@ const CartItem = (
       ) : (
         <Space direction="vertical" className="productAmount">
           <Space size="large">
-            <Badge count={amount}></Badge>
+            <Badge count={amount} style={{ backgroundColor: "#3c6b39" }} />
             <ButtonGroup>
               <Button onClick={decline} icon={<MinusOutlined />} />
               <Button onClick={increase} icon={<PlusOutlined />} />
@@ -87,23 +86,14 @@ const CartItem = (
         <DeleteButton
           animated="vertical"
           onClick={handleDeleteItem}
-          className="product-item__cart"
-          style={{ float: "right" }}
+          className="cart-item__cart"
+          style={{ float: "right", backgroundColor: "white" }}
         >
-          <DeleteButton.Content hidden>Cart</DeleteButton.Content>
+          <DeleteButton.Content hidden>Delete</DeleteButton.Content>
           <DeleteButton.Content visible>
             <DeleteIcon />
           </DeleteButton.Content>
         </DeleteButton>
-
-        <IconButton
-          aria-label="delete"
-          size="large"
-          onClick={handleDeleteItem}
-          style={{ float: "right" }}
-        >
-          <DeleteIcon />
-        </IconButton>
       </div>
     </li>
   );
