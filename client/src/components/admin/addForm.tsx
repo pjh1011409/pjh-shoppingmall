@@ -24,9 +24,10 @@ const AddForm = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const formData = arrToObj([...new FormData(e.target as HTMLFormElement)]);
+    let formData = arrToObj([...new FormData(e.target as HTMLFormElement)]);
     formData.price = Number(formData.price);
     addProduct(formData as MutableProduct);
+    formData = [];
   };
   return (
     <form onSubmit={handleSubmit}>

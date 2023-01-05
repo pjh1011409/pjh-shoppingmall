@@ -10,6 +10,8 @@ import {
 } from "../../graphql/products";
 import { getClient, graphqlFetcher, QueryKeys } from "../../queryClient";
 import arrToObj from "../../util/arrToObj";
+import { Button, Icon } from "semantic-ui-react";
+import EditItem from "./editItem";
 
 const AdminItem = ({
   id,
@@ -72,52 +74,46 @@ const AdminItem = ({
 
   if (isEditing)
     return (
-      <li className="product-item">
-        <form onSubmit={handleSubmit}>
-          <label>
-            상품명:{" "}
-            <input name="title" type="text" required defaultValue={title} />
-          </label>
-          <label>
-            이미지URL:{" "}
-            <input
-              name="imageUrl"
-              type="text"
-              required
-              defaultValue={imageUrl}
-            />
-          </label>
-          <label>
-            상품가격:{" "}
-            <input
-              name="price"
-              type="number"
-              required
-              min="1000"
-              defaultValue={price}
-            />
-          </label>
-          <label>
-            상세: <textarea name="description" defaultValue={description} />
-          </label>
-          <button type="submit">저장</button>
-        </form>
-      </li>
+      <EditItem
+        handleSubmit={handleSubmit}
+        title={title}
+        imageUrl={imageUrl}
+        price={price}
+        description={description}
+      />
     );
   return (
     <li className="product-item">
       <Link to={`/products/${id}`}>
-        <p className="product-item__title">{title}</p>
         <img className="product-item__image" src={imageUrl} />
+        <p className="product-item__title">{title}</p>
         <span className="product-item__price">₩{price}</span>
       </Link>
-      {!createdAt && <span>삭제된 상품</span>}
-      <button className="product-item__add-cart" onClick={startEdit}>
-        수정
-      </button>
-      <button className="product-item__delete-cart" onClick={deleteItem}>
-        삭제
-      </button>
+      <div className="alertDelete">
+        {!createdAt && <span> ❌ 삭제된 상품 ❌</span>}
+      </div>
+      <Button
+        animated="vertical"
+        onClick={deleteItem}
+        style={{ backgroundColor: "white", marginBottom: "5px" }}
+        className="productDelete"
+      >
+        <Button.Content hidden>Delete</Button.Content>
+        <Button.Content visible>
+          <Icon name="trash alternate" style={{ fontSize: "17px" }} />
+        </Button.Content>
+      </Button>
+      <Button
+        animated="vertical"
+        onClick={startEdit}
+        style={{ backgroundColor: "white", marginBottom: "5px" }}
+        className="productEdit"
+      >
+        <Button.Content hidden>Edit</Button.Content>
+        <Button.Content visible>
+          <Icon name="pencil" style={{ fontSize: "17px" }} />
+        </Button.Content>
+      </Button>
     </li>
   );
 };
