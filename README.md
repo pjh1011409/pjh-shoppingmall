@@ -237,41 +237,65 @@
 
 ---
 
-#### 👉 Foreign key constraint
+#### 👉 체크박스 상태값 기억하기
 
 - **Issue**
-  - 커뮤니티, 게시글, 댓글을 삭제하는 과정에서 외래키 참조에 대한 에러 발생.
+  - 장바구니에 체크된 데이터를 기억하지 못하고 페이지 이동후 체크가 풀려버리는 현상 발생.
 - **trouble shooting**
-  - 테이블마다 외래키를 통해 연관관계를 맺고 있기 때문이다. 따라서, **CASCADE문**을 사용하여 삭제시 참조되는 테이블에서도 업데이트가 이루어지게 한다.
+  - 장바구니페이지가 렌더링될 때마다 장바구니의 상품 중에 체크되었던 상품의 id값을 기억해 check값이 true가 되게 만든다.
+    - data-\*: 특정한 데이터를 DOM요소에 저장
+    - dataset: 에 대한 값을 읽어들언다.
 
 ```
-// Example
-@ManyToOne(() => Post, post => post.comments, {
-    nullable: false,
-    onDelete: 'CASCADE',
-  })
+// comonents/cart/CartItem.tsx
+<input ... data-id={id} ... />
+
+
+// components/cart/index.tsx
+useEffect(() => {
+    checkedCartData.forEach((item) => {
+      const itemRef = checkboxRefs.find(
+        (ref) => ref.current!.dataset.id === item.id
+      );
+      if (itemRef) itemRef.current!.checked = true;
+    });
+    setAllCheckedFromItems();
+  }, []);
 ```
 
 ---
 
-#### 👉 미들웨어 생성하기
+#### 👉 Query Key 고유성
 
 - **Issue**
-  - route 생성시 대부분의 기능들이 사용자 인증에 대한 핸들러를 사용
+  - Admin페이지와 Product페이지는 공통된 graphQL을 통해 상품데이터를 가져온다. 단, admin페이지에서는 삭제된 상품이 출력되고, Product페이지에서는 삭제된 상품은 미출력되는 조건을 가지고 있다.
+    하지만, 둘다 같은 데이터를 출력하는 현상 발생.
 - **trouble shooting**
-  - 중복적으로 사용되는 핸들러를 재사용하기 위하여 **미들웨어**로 분리
-  - User Middleware : 여러 핸들러에서 유저 정보를 제공
-  - Auth Middleware : 유저 정보 또는 유저 등급에 따른 인증 제공
+  - Query Key값을 고유한 값으로 설정하여 서로 다른 데이터라는 것을 인지시키기
+
+```
+// Product Page
+useInfinityQuery<Products>(
+  [QueryKeys.PRODUCTS, "products"],
+  ...
+  )
+
+// Admin Page
+useInfinityQuery<Products>(
+  [QueryKeys.PRODUCTS, "admin"],
+  ...
+  )
+```
 
 ---
 
-#### 👉 Infinite Scroll
+#### 👉 장바구니 데이터 무한 랜더링 발생
 
 - **Issue**
-  - 수많은 게시글에 대한 데이터 출력
+  - NavBar에 장바구니에 담긴 상품 수량을 출력하기 위해, 장바구니의 데이터를 invalidQueries를 사용하여 실시간으로 호출. 이 과정에서 데이터를 계속해서 Refetching하여 무한 랜더링이 발생한다.
+    이유는 장바구니에 상품이 추가된 것으로 navBar에서는 새로운 값을 가져온다. 그리고, 새롭게 가져온 것이 또다시 데이터가 변경되었다고 판단되어 계속하여 fetching이 이루어지는 것 같다. 개발 중에 여러번 서버가 다운되었는데 이 것이 원인이었던 것 같다. ㅜㅜ
 - **trouble shooting**
-  - **useSWRInfinite**을 통해서 페이지를 스크롤하는 동작에 반응하여 자동으로 필요한 데이터를 불러오는 기능을 구현
-  - 페이지의 끝이라는 특정지점에 도달하는지 관찰하기 위해 **Intersection Observer API**을 사용
+  - Recoil을 통해 수량을 전역으롯 상태 관리히여 장바구니 추가 버튼 클릭시 navBar에서 구독했던 상태값을 가져오게 하였다.
 
 <br>
 
@@ -293,10 +317,7 @@
 
 <br>
 
-## ✚ 추가하고 싶은 기능
+## ✚ 추가해볼 기능
 
-1️⃣ 검색기능을 frontend에서의 filter, includes 을 통한 데이터 처리가 아닌, backend에서 입력한 값에 대한 데이터를 불러오는 방식으로 변환
-
-2️⃣ 텍스트 에디터를 추가하여 편리하고 유용한 게시글 작성
-
-3️⃣ 카카오 로그인 API을 사용하여 간편로그인 구현
+- 로그인을 통한 인증에 따른 Admin 권한
+- 찜하기, 좋아요 기능
