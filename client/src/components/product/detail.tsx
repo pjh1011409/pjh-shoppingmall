@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Product } from "../../graphql/products";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,12 +8,32 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AlertModal from "./alertModal";
+import { useRecoilState } from "recoil";
+import { cartItemCount } from "../../recoils/cart";
+import { useMutation } from "react-query";
+import { graphqlFetcher } from "../../queryClient";
+import { ADD_CART } from "../../graphql/cart";
 
 const ProductDetail = ({
-  item: { imageUrl, price, title, description },
+  item: { id, imageUrl, price, title, description },
 }: {
   item: Product;
 }) => {
+  const [modalShow, setModalShow] = useState(false);
+  const [countCartItem, setCountCartItem] = useRecoilState(cartItemCount);
+
+  const { mutate: addCart } = useMutation((id: string) =>
+    graphqlFetcher(ADD_CART, { id })
+  );
+
+  const clickCart = () => {
+    addCart(id);
+    setModalShow(true);
+    setCountCartItem((prev) => (prev += 1));
+    setTimeout(() => setModalShow(false), 1500);
+  };
+
   return (
     <Container maxWidth="md">
       <Row className="detailLayout">
@@ -24,10 +44,13 @@ const ProductDetail = ({
           <div className="productTitle">{title}</div>
           <div>{description}</div>
           <div className="productPrice">₩ {price}</div>
-          <button className="detailCart">Add to Cart</button>
+          <button className="detailCart" onClick={clickCart}>
+            Add to Cart
+          </button>
           <Description />
         </Col>
       </Row>
+      <AlertModal show={modalShow} />
     </Container>
   );
 };
