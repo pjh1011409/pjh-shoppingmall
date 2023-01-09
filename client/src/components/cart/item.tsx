@@ -20,8 +20,35 @@ const CartItem = (
     ({ id, amount }: { id: string; amount: number }) =>
       graphqlFetcher(UPDATE_CART, { id, amount }),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(QueryKeys.CART);
+      onMutate: async ({ id, amount }) => {
+        await queryClient.cancelQueries(QueryKeys.CART);
+        const { cart: prevCart } = queryClient.getQueryData<{
+          cart: CartType[];
+        }>(QueryKeys.CART) || { cart: [] };
+        if (!prevCart) return null;
+
+        const targetIndex = prevCart.findIndex(
+          (cartItem) => cartItem.id === id
+        );
+        if (targetIndex === undefined || targetIndex < 0) return prevCart;
+
+        const newCart = [...prevCart];
+        newCart.splice(targetIndex, 1, { ...newCart[targetIndex], amount });
+        queryClient.setQueryData(QueryKeys.CART, { cart: newCart });
+        return prevCart;
+      },
+      onSuccess: ({ updateCart }) => {
+        const { cart: prevCart } = queryClient.getQueryData<{
+          cart: CartType[];
+        }>(QueryKeys.CART) || { cart: [] };
+        const targetIndex = prevCart?.findIndex(
+          (cartItem) => cartItem.id === updateCart.id
+        );
+        if (!prevCart || targetIndex === undefined || targetIndex < 0) return;
+
+        const newCart = [...prevCart];
+        newCart.splice(targetIndex, 1, updateCart);
+        queryClient.setQueryData(QueryKeys.CART, { cart: newCart });
       },
     }
   );
