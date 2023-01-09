@@ -3,9 +3,8 @@ import Badge, { BadgeProps } from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { useQuery } from "react-query";
-import { CartType, GET_CART } from "../../graphql/cart";
-import { getClient, graphqlFetcher, QueryKeys } from "../../queryClient";
+import { useRecoilValue } from "recoil";
+import { cartItemCount } from "../../recoils/cart";
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -17,21 +16,11 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 }));
 
 const CartIcon = () => {
-  const queryClient = getClient();
-
-  const { data } = useQuery(QueryKeys.CART, () => graphqlFetcher(GET_CART), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(QueryKeys.CART, {
-        exact: false,
-        refetchInactive: true,
-      });
-    },
-  });
-  const cartItems = (data?.cart || []) as CartType[];
+  const itemCount = useRecoilValue(cartItemCount);
 
   return (
     <IconButton aria-label="cart">
-      <StyledBadge badgeContent={cartItems.length} color="secondary">
+      <StyledBadge badgeContent={itemCount} color="secondary">
         <ShoppingBasketIcon style={{ fontSize: "35px" }} />
       </StyledBadge>
     </IconButton>

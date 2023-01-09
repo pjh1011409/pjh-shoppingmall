@@ -6,9 +6,12 @@ import { ADD_CART } from "../../graphql/cart";
 import React, { useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
 import AlertModal from "./alertModal";
+import { useRecoilState } from "recoil";
+import { cartItemCount } from "../../recoils/cart";
 
 const ProductItem = ({ id, imageUrl, price, title }: Product) => {
   const [modalShow, setModalShow] = useState(false);
+  const [countCartItem, setCountCartItem] = useRecoilState(cartItemCount);
 
   const { mutate: addCart } = useMutation((id: string) =>
     graphqlFetcher(ADD_CART, { id })
@@ -17,7 +20,7 @@ const ProductItem = ({ id, imageUrl, price, title }: Product) => {
   const clickCart = () => {
     addCart(id);
     setModalShow(true);
-
+    setCountCartItem((prev) => (prev += 1));
     setTimeout(() => setModalShow(false), 1500);
   };
 

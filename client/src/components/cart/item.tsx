@@ -8,7 +8,6 @@ import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Badge, Button, Space } from "antd";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button as DeleteButton } from "semantic-ui-react";
-import { Checkbox } from "semantic-ui-react";
 
 const ButtonGroup = Button.Group;
 
@@ -22,10 +21,7 @@ const CartItem = (
       graphqlFetcher(UPDATE_CART, { id, amount }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(QueryKeys.CART, {
-          exact: false,
-          refetchInactive: true,
-        });
+        queryClient.invalidateQueries(QueryKeys.CART);
       },
     }
   );
@@ -34,10 +30,7 @@ const CartItem = (
     ({ id }: { id: string }) => graphqlFetcher(DELETE_CART, { id }),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(QueryKeys.CART, {
-          exact: false,
-          refetchInactive: true,
-        });
+        queryClient.invalidateQueries(QueryKeys.CART);
       },
     }
   );
