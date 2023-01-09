@@ -245,7 +245,7 @@
 - **trouble shooting**
   - 장바구니페이지가 렌더링될 때마다 장바구니의 상품 중에 체크되었던 상품의 id값을 기억해 check값이 true가 되게 만든다.
     - data-\*: 특정한 데이터를 DOM요소에 저장
-    - dataset: 에 대한 값을 읽어들언다.
+    - dataset: data-\* 에 대한 값을 읽어들언다.
 
 ```
 // comonents/cart/CartItem.tsx
