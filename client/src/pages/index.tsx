@@ -2,6 +2,7 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "@mui/material/Container";
+import { Link } from "react-router-dom";
 
 const MainPage = () => (
   <Container maxWidth="lg">
@@ -15,9 +16,11 @@ const MainPage = () => (
             At pure Flave, we're dedicated to goodness in every sip. Delicous,
             fresh jucie, just as nature intended
           </p>
-          <button className="gotoShopBtn">
-            <div>Shop</div>
-          </button>
+          <Link to="/products">
+            <button className="gotoShopBtn">
+              <div>Shop</div>
+            </button>
+          </Link>
         </div>
       </Col>
       <Col sm={6} className="mainLayout">

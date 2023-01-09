@@ -18,20 +18,18 @@ const PayList = ({ checkedItems }: PayListProps) => (
     <tbody>
       {checkedItems.map(
         ({ product: { imageUrl, price, title, createdAt }, amount, id }) => (
-          <>
-            <tr className="tableTr">
-              <td colSpan={2}>
-                <img
-                  src={imageUrl}
-                  style={{ float: "left", margin: "5px 0px", height: "70px" }}
-                />
-                <div style={{ padding: "35px 0px" }}>{title}</div>
-              </td>
-              <td>{price}</td>
-              <td>{amount}</td>
-              <td>{amount * price}</td>
-            </tr>
-          </>
+          <tr className="tableTr" key={id}>
+            <td colSpan={2}>
+              <img
+                src={imageUrl}
+                style={{ float: "left", margin: "5px 0px", height: "70px" }}
+              />
+              <div style={{ padding: "35px 0px" }}>{title}</div>
+            </td>
+            <td>{price}</td>
+            <td>{amount}</td>
+            <td>{amount * price}</td>
+          </tr>
         )
       )}
     </tbody>
