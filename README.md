@@ -13,8 +13,11 @@
 
 ## 📎 Link
 
+**Hompage**
 👉 https://pjh-shoppingmall.vercel.app/
 
+**Notion**
+👉 [Notion Portfolio](https://www.notion.so/Fresh-Life-aeeb284f6cea4c48bccb6f72c422f24f)
 <br>
 
 ## 🍀 나의 개발일지
