@@ -230,7 +230,7 @@
 
 # 🔥 Issue & TroubleShooting
 
-#### 👉 invalidateQueries vs 낙관적 업데이트
+### 👉 invalidateQueries vs 낙관적 업데이트
 
 - **Issue**
   - 장바구니 상품 수량 변경시 실시간으로 amount가 반영되지 못하여, InvalidateQueries를 통해 데이터를 Update 요청 후에 Get 요청을 하는 비관적 업데이트 처리.
@@ -240,7 +240,7 @@
 
 ---
 
-#### 👉 체크박스 상태값 기억하기
+### 👉 체크박스 상태값 기억하기
 
 - **Issue**
   - 장바구니에 체크된 데이터를 기억하지 못하고 페이지 이동후 체크가 풀려버리는 현상 발생.
@@ -268,7 +268,7 @@ useEffect(() => {
 
 ---
 
-#### 👉 Query Key 고유성
+### 👉 Query Key 고유성
 
 - **Issue**
   - Admin페이지와 Product페이지는 공통된 graphQL을 통해 상품데이터를 가져온다. 단, admin페이지에서는 삭제된 상품이 출력되고, Product페이지에서는 삭제된 상품은 미출력되는 조건을 가지고 있다.
@@ -292,13 +292,40 @@ useInfinityQuery<Products>(
 
 ---
 
-#### 👉 장바구니 데이터 무한 랜더링 발생
+### 👉 장바구니 데이터 무한 랜더링 발생
 
 - **Issue**
   - NavBar에 장바구니에 담긴 상품 수량을 출력하기 위해, 장바구니의 데이터를 invalidQueries를 사용하여 실시간으로 호출. 이 과정에서 데이터를 계속해서 Refetching하여 무한 랜더링이 발생한다.
     이유는 장바구니에 상품이 추가된 것으로 navBar에서는 새로운 값을 가져온다. 그리고, 새롭게 가져온 것이 또다시 데이터가 변경되었다고 판단되어 계속하여 fetching이 이루어지는 것 같다. 개발 중에 여러번 서버가 다운되었는데 이 것이 원인이었던 것 같다. ㅜㅜ
 - **trouble shooting**
   - Recoil을 통해 수량을 전역으롯 상태 관리히여 장바구니 추가 버튼 클릭시 navBar에서 구독했던 상태값을 가져오게 하였다.
+
+### 👉  Lazy Loading
+
+- **Issue**
+  - 사용자가 사이트에 접속했을 때 보이지 않는 것까지 모두 로드해오는 것이아니라 보이는 페이지만 로드한 후 다른 페이지에 접속했을 때 그 곳의 데이터를 로드해오는 작업이 필요.
+- **trouble shooting**
+  - React.lazy()와 Suspense 컴포넌트를 사용하여 해결. fallback prop으로 spinner 컴포넌트 적용.
+
+```
+// layout.tsx
+const Layout: React.FC = () => {
+  return (
+    <div>
+      <Suspense fallback={<Loading />}>
+        <Outlet />
+      </Suspense>
+    </div>
+  );
+};
+
+// routes.tsx
+const DynamicIndex = React.lazy(() => import('./pages/index'));
+const DynamicAdminIndex = React.lazy(() => import('./pages/admin/index'));
+const DynamicCartIndex = React.lazy(() => import('./pages/cart/index'));
+...
+```
+
 
 <br>
 
