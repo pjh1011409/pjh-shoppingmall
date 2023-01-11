@@ -300,6 +300,8 @@ useInfinityQuery<Products>(
 - **trouble shooting**
   - Recoil을 통해 수량을 전역으롯 상태 관리히여 장바구니 추가 버튼 클릭시 navBar에서 구독했던 상태값을 가져오게 하였다.
 
+----
+
 ### 👉  Lazy Loading
 
 - **Issue**
