@@ -300,6 +300,32 @@ useInfinityQuery<Products>(
 - **trouble shooting**
   - Recoil을 통해 수량을 전역으롯 상태 관리히여 장바구니 추가 버튼 클릭시 navBar에서 구독했던 상태값을 가져오게 하였다.
 
+#### 👉 Component Lazy Loading
+
+- **Issue**
+  - 사용자가 사이트에 접속했을 때 보이지 않는 것까지 모두 로드해오는 것이아니라 보이는 페이지만 로드한 후 다른 페이지에 접속했을 때 그 곳의 데이터를 로드해오는 작업이 필요.
+- **trouble shooting**
+  - React.lazy()와 Suspense 컴포넌트를 사용하여 해결. fallback prop으로 spinner 컴포넌트 적용.
+
+```
+// layout.tsx
+const Layout: React.FC = () => {
+  return (
+    <div>
+      <Suspense fallback={<Loading />}>
+        <Outlet />
+      </Suspense>
+    </div>
+  );
+};
+
+// routes.tsx
+const DynamicIndex = React.lazy(() => import('./pages/index'));
+const DynamicAdminIndex = React.lazy(() => import('./pages/admin/index'));
+const DynamicCartIndex = React.lazy(() => import('./pages/cart/index'));
+...
+```
+
 <br>
 
 <br>
