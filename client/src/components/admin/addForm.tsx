@@ -34,20 +34,38 @@ const AddForm = () => {
       <Row className="addForm">
         <Col sm className="leftLayout">
           <div className="leftInput">
-            Name : <input name="title" type="text" required />
+            Name :{" "}
+            <input
+              name="title"
+              type="text"
+              style={{ border: "1px solid" }}
+              required
+            />
           </div>
           <div className="leftInput">
-            Image : <input name="imageUrl" type="text" required />
+            Image :{" "}
+            <input
+              name="imageUrl"
+              type="text"
+              style={{ border: "1px solid" }}
+              required
+            />
           </div>
           <div className="leftInput">
             Price : &nbsp;
-            <input name="price" type="number" required min="1000" />
+            <input
+              name="price"
+              type="number"
+              required
+              style={{ border: "1px solid" }}
+              min="1000"
+            />
           </div>
         </Col>
         <Col sm>
           <div className="rightInput">Description</div>
           <div className="rightInput">
-            <textarea name="description" />
+            <textarea name="description" style={{ border: "1px solid" }} />
           </div>
         </Col>
         <div className="btnLayout">
