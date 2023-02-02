@@ -25,8 +25,7 @@
 
 ## 🍀 나의 개발일지
 
-<details>
-<summary>✏️ 프로젝트를 개발하며 작성한 개발블로그입니다.</summary>
+<strong>✏️ 프로젝트를 개발하며 작성한 개발블로그입니다.</strong>
 
 - [Start & Setting](https://velog.io/@pjh1011409/PJHs-Shopping-Mall-Start-Setting)
 - [상품 리스트, 상세페이지](https://velog.io/@pjh1011409/PJHs-Shopping-Mall-Start-Setting-z2rep4a2)
@@ -40,9 +39,6 @@
 - [Firebase](https://velog.io/@pjh1011409/PJHs-Shopping-Mall-Firebase)
 - [배포](https://velog.io/@pjh1011409/PJHs-Shopping-Mall-%EB%B0%B0%ED%8F%AC)
 
-</details>
- 
-  
 <br>
 
 ## ⚙️ 주요 기능
@@ -79,7 +75,8 @@
 
 ## 📄 Project Architecture
 
-#### Client
+<details>
+<summary> <strong> Client </strong> </summary>
 
 ```
 ⭐️ src
@@ -138,7 +135,10 @@
 └── 🗂 scss
 ```
 
-#### Server
+</details>
+
+<details>
+<summary> <strong> Server </strong> </summary>
 
 ```
 ⭐️ src
@@ -161,12 +161,23 @@
 
 ```
 
+</details>
+
 <br>
 
 ## Query & Mutation
 
+<details>
+<summary> <strong> Products </strong> </summary>
+
 <img width="793" alt="스크린샷 2023-01-03 오후 9 29 14" src="https://user-images.githubusercontent.com/81337674/210358754-f87b7004-9a6f-43db-8ce7-0239143e5c52.png">
+</details>
+
+<details>
+<summary> <strong> Cart </strong> </summary>
+
 <img width="786" alt="스크린샷 2023-01-03 오후 9 37 37" src="https://user-images.githubusercontent.com/81337674/210358757-eb20abda-5945-4fe4-ab90-fe2488cde375.png">
+</details>
 
 <br>
 
