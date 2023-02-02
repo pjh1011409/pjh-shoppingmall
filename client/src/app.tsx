@@ -8,8 +8,6 @@ import * as React from "react";
 import styled from "styled-components";
 import BottomBar from "./components/navigation/bottomBar";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import { ChakraProvider } from "@chakra-ui/react";
-import { Loading } from "./components/errorResult/loading";
 
 const App = () => {
   const elem = useRoutes(routes);
@@ -27,9 +25,6 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Background>
-        <ChakraProvider>
-          <Loading />
-        </ChakraProvider>
         <NavBar />
         <div style={{ marginTop: "90px" }} />
         {elem}

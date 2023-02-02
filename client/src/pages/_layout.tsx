@@ -5,7 +5,7 @@ import { Loading } from "../components/errorResult/loading";
 const Layout: React.FC = () => {
   return (
     <div>
-      <Suspense fallback={""}>
+      <Suspense fallback={<Loading />}>
         <Outlet />
       </Suspense>
     </div>
