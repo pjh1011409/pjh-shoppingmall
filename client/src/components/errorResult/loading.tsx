@@ -1,15 +1,30 @@
-import Box from "@mui/material/Box";
+import { Spinner, Text } from "@chakra-ui/react";
 import React from "react";
-import { Space, Spin } from "antd";
+import { ReactElement } from "react";
+import { useIsFetching, useIsMutating } from "react-query";
 
-const Loading = () => {
+export function Loading(): ReactElement {
+  const isFetching = useIsFetching();
+  const isMutating = useIsMutating();
+
+  const display = isFetching || isMutating ? "inherit" : "none";
+
   return (
-    <Space direction="vertical" style={{ width: "70%" }} className="loading">
-      <Spin tip="Loading" size="large">
-        <div className="content" />
-      </Spin>
-    </Space>
+    <Spinner
+      thickness="4px"
+      speed="0.65s"
+      emptyColor="gray.200"
+      color="blue.500"
+      size="xl"
+      role="status"
+      position="fixed"
+      zIndex="9999"
+      top="50%"
+      left="50%"
+      transform="translate(-50%, -50%)"
+      display={display}
+    >
+      <Text>Loading...</Text>
+    </Spinner>
   );
-};
-
-export default Loading;
+}
