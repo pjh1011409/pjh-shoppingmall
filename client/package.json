@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@material-ui/core": "^4.12.4",
@@ -19,6 +20,7 @@
     "@types/semantic-ui": "^2.2.7",
     "add": "^2.0.6",
     "antd": "^5.1.2",
+    "framer-motion": "^9.0.0",
     "graphql": "^16.6.0",
     "graphql-request": "^5.1.0",
     "graphql-tag": "^2.12.6",
