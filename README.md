@@ -1,8 +1,70 @@
 ## 🍏 Fresh Life 🍀
 
+<p align="center"> 
+💡 Intro &nbsp; <strong>|</strong> &nbsp;
+📖 Learn & Study &nbsp; <strong>|</strong> &nbsp;
+🗓 프로젝트 기간&nbsp; <strong>|</strong> &nbsp;
+📎 Link &nbsp; <strong>|</strong> &nbsp;
+🍀 나의 개발일지 &nbsp; <strong>|</strong> &nbsp; 
+⚙️ 주요 기능 &nbsp; <strong>|</strong> &nbsp; 
+</p>
+<p align="center"> 
+💻 Service Architecture &nbsp; <strong>|</strong> &nbsp; 
+📄 Project Architecture &nbsp; <strong>|</strong> &nbsp;
+📡 Query & Mutation  &nbsp; <strong>|</strong> &nbsp;
+🛠 Tools &nbsp; <strong>|</strong> &nbsp;
+🔥 Issue & TroubleShooting &nbsp; <strong>|</strong> &nbsp;
+🎥 GIF
+<br></p>
+
+---
+
+<br>
+
+##💡 Intro
+
 <strong>상쾌하고 건강한 하루를 선물해요. </strong>
 <br>
 <strong>유기농 음료 수제 캔들,비누 등을 판매하는 쇼핑몰 사이트입니다.</strong>
+
+<br>
+
+## 📖 Learn & Study
+
+- ##### [React Query](https://velog.io/@pjh1011409/React-Query)
+  - 간편한 데이터 요청, 업데이트, 무한스크롤
+  - query / mutate / invalidateQueries / useInfiniteQuery
+- ##### [API 모킹하기](https://velog.io/@pjh1011409/PJHs-Shopping-Mall-%EC%84%9C%EB%B2%84-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+
+  - Mock Service Worker을 사용
+  - 모의 서버 생성 👉 모의 데이터 통신
+
+- ##### 낙관적 업데이트
+
+  - 낙관적 업데이트라는 개념 파악
+  - 비관적 업데이트 vs 낙관적 업데이트
+
+- ##### Recoil
+
+  - 간단한 상태관리를 Recoil로 해결 in Client
+  - `useRecoilValue` : 상태의 값을 반환
+  - `useRecoilState` : 읽고 쓰려고 할 때 사용
+
+- ##### [GrpahQL + Apollo](https://velog.io/@pjh1011409/GraphQL-%ED%86%B5%EC%8B%A0)
+
+  - GraphQL 개념, 사용방법
+  - schema / resolver / query / mutation
+  - GraphQL playground 사용을 통한 편리한 데이터 통신 확인
+
+- ##### Firebase
+
+  - 유연하고 손쉬운 DB 구성
+
+- ##### 다양한 React UI 라이브러리 사용
+  - `Material UI`
+  - `Ant Design`
+  - `Sementic UI`
+  - `React bootstrap`
 
 <br>
 
@@ -165,7 +227,7 @@
 
 <br>
 
-## Query & Mutation
+## 📡 Query & Mutation
 
 <details>
 <summary> <strong> Products </strong> </summary>
