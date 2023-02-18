@@ -7,24 +7,32 @@ import React, { useEffect, useRef, useState } from "react";
 import useIntersection from "../../hooks/useIntersection";
 import AddForm from "../../components/admin/addForm";
 import Container from "@mui/material/Container";
-import { ProductResult } from "../../components/errorResult/errorResult";
+import { ProductResult } from "../../components/errorLoadHandler/errorResult";
+import { ProductLoading } from "../../components/errorLoadHandler/loading";
 
 const AdminPage = () => {
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const fetchMoreRef = useRef<HTMLDivElement>(null);
   const intersecting = useIntersection(fetchMoreRef);
 
-  const { data, isSuccess, isFetchingNextPage, fetchNextPage, hasNextPage } =
-    useInfiniteQuery<Products>(
-      [QueryKeys.PRODUCTS, "admin"],
-      ({ pageParam = "" }) =>
-        graphqlFetcher(GET_PRODUCTS, { cursor: pageParam, showDeleted: true }),
-      {
-        getNextPageParam: (lastPage) => {
-          return lastPage.products[lastPage.products.length - 1]?.id;
-        },
-      }
-    );
+  const {
+    data,
+    isError,
+    isLoading,
+    isSuccess,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery<Products>(
+    [QueryKeys.PRODUCTS, "admin"],
+    ({ pageParam = "" }) =>
+      graphqlFetcher(GET_PRODUCTS, { cursor: pageParam, showDeleted: true }),
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage.products[lastPage.products.length - 1]?.id;
+      },
+    }
+  );
 
   useEffect(() => {
     if (!intersecting || !isSuccess || !hasNextPage || isFetchingNextPage)
@@ -35,21 +43,20 @@ const AdminPage = () => {
   const startEdit = (index: number) => () => setEditingIndex(index);
   const doneEdit = () => setEditingIndex(null);
 
+  if (isLoading) return <ProductLoading />;
+  if (isError) return <ProductResult />;
+
   return (
     <Container maxWidth="md">
       <div className="adminLayout">
         <div className="adminTitle">Admin</div>
         <AddForm />
-        {data ? (
-          <AdminList
-            list={data?.pages || []}
-            editingIndex={editingIndex}
-            startEdit={startEdit}
-            doneEdit={doneEdit}
-          />
-        ) : (
-          <ProductResult />
-        )}
+        <AdminList
+          list={data?.pages || []}
+          editingIndex={editingIndex}
+          startEdit={startEdit}
+          doneEdit={doneEdit}
+        />
 
         <div ref={fetchMoreRef} />
       </div>
