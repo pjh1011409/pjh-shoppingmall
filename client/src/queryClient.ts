@@ -21,7 +21,7 @@ export const getClient = (() => {
   };
 })();
 
-const BASE_URL = "https://pjh-shoppingmall.herokuapp.com";
+const BASE_URL = import.meta.env.VITE_SERVER_URL as string;
 
 export const graphqlFetcher = (query: RequestDocument, variables = {}) =>
   request(`${BASE_URL}/graphql`, query, variables, {
