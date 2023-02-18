@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { Loading } from "../components/errorResult/loading";
+import { Loading } from "../components/errorLoadHandler/loading";
 
 const Layout: React.FC = () => {
   return (
