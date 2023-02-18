@@ -6,29 +6,39 @@ import { Products } from "../../graphql/products";
 import React, { useEffect, useRef } from "react";
 import useIntersection from "../../hooks/useIntersection";
 import Container from "@mui/material/Container";
-import { ProductResult } from "../../components/errorResult/errorResult";
+import { ProductResult } from "../../components/errorLoadHandler/errorResult";
+import { ProductLoading } from "../../components/errorLoadHandler/loading";
 
 const ProductListPage = () => {
   const fetchMoreRef = useRef<HTMLDivElement>(null);
   const intersecting = useIntersection(fetchMoreRef);
 
-  const { data, isSuccess, isFetchingNextPage, fetchNextPage, hasNextPage } =
-    useInfiniteQuery<Products>(
-      [QueryKeys.PRODUCTS, "products"],
-      ({ pageParam = "" }) =>
-        graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
-      {
-        getNextPageParam: (lastPage) => {
-          return lastPage.products[lastPage.products.length - 1]?.id;
-        },
-      }
-    );
+  const {
+    data,
+    isError,
+    isLoading,
+    isSuccess,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery<Products>(
+    [QueryKeys.PRODUCTS, "products"],
+    ({ pageParam = "" }) => graphqlFetcher(GET_PRODUCTS, { cursor: pageParam }),
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage.products[lastPage.products.length - 1]?.id;
+      },
+    }
+  );
 
   useEffect(() => {
     if (!intersecting || !isSuccess || !hasNextPage || isFetchingNextPage)
       return;
     fetchNextPage();
   }, [intersecting]);
+
+  if (isLoading) return <ProductLoading />;
+  if (isError) return <ProductResult />;
 
   return (
     <Container maxWidth="md">
@@ -38,7 +48,7 @@ const ProductListPage = () => {
           How about a cool and refreshing organic drink with a soft and relaxing
           scent?
         </p>
-        {data ? <ProductList list={data?.pages || []} /> : <ProductResult />}
+        <ProductList list={data?.pages || []} />
         <div ref={fetchMoreRef} />
       </div>
     </Container>
