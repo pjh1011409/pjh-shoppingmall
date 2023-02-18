@@ -13,6 +13,9 @@
 📄 Project Architecture &nbsp; <strong>|</strong> &nbsp;
 📡 Query & Mutation  &nbsp; <strong>|</strong> &nbsp;
 🛠 Tools &nbsp; <strong>|</strong> &nbsp;
+👍 사용 이유
+<br></p>
+<p align="center"> 
 🔥 Issue & TroubleShooting &nbsp; <strong>|</strong> &nbsp;
 🎥 GIF
 <br></p>
@@ -21,7 +24,7 @@
 
 <br>
 
-##💡 Intro
+## 💡 Intro
 
 <strong>상쾌하고 건강한 하루를 선물해요. </strong>
 <br>
